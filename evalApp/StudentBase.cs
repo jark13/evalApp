@@ -1,4 +1,6 @@
-﻿namespace evalApp
+﻿using System.IO.Enumeration;
+
+namespace evalApp
 {
     public abstract class StudentBase : IStudent
     {
@@ -32,6 +34,8 @@
         public abstract void AddGrade(int grade);
 
         public abstract void AddGrade(string grade);
+
+        //public abstract void FileName(string fileName);
 
         public abstract Statistics GetStatistics();
     }

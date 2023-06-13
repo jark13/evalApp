@@ -1,9 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-using static evalApp.StudentBase;
+﻿using static evalApp.StudentBase;
 
 namespace evalApp
 {
@@ -20,6 +15,7 @@ namespace evalApp
             this.Surname = surname;
             this.Sex = sex;
         }
+
 
         public string Name { get; private set; }
 
@@ -50,10 +46,7 @@ namespace evalApp
             {
                 AddGrade(result);
             }
-            //else
-            //{
-            //    throw new Exception("String is not float");
-            //}
+
             else if (char.TryParse(grade, out char charResult))
             {
                 this.AddGrade(charResult);

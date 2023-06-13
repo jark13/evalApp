@@ -1,9 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
+﻿using System.Collections.Specialized;
 using System.Diagnostics;
 using static evalApp.StudentBase;
 
@@ -32,7 +27,7 @@ namespace evalApp
 
         public override void AddGrade(float grade)
         {
-            if (grade >= 0 && grade <= 100)               
+            if (grade >= 0 && grade <= 100)
             {
                 using (var writer = File.AppendText(fileName))
                 {
@@ -54,86 +49,76 @@ namespace evalApp
         {
             if (float.TryParse(grade, out float result))
             {
-                
+                if (result >= 0 && result <= 100)
+                {
                     using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(result);
+
                         if (GradeAdded != null)
                         {
                             GradeAdded(this, new EventArgs());
                         }
                     }
-                                
-            }           
-            else if (char.TryParse(grade, out char charResult))
-            {
-                using (var writer = File.AppendText(fileName))
+                }
+                else
                 {
-                    writer.WriteLine(result);
+                    throw new Exception("Value out of range");
                 }
             }
             else
             {
-                throw new Exception("String is not float");
+                if (char.TryParse(grade, out char charResult))
+                {
+                    switch (charResult)
+                    {
+                        case 'A':
+                        case 'a':
+                            //this.grades.Add(100);
+                            using (var writer = File.AppendText(fileName))
+                            {
+                                writer.WriteLine(100);
+                            }
+                            break;
+                        case 'B':
+                        case 'b':
+                            using (var writer = File.AppendText(fileName))
+                            {
+                                writer.WriteLine(80);
+                            }
+                            break;
+                        case 'C':
+                        case 'c':
+                            using (var writer = File.AppendText(fileName))
+                            {
+                                writer.WriteLine(60);
+                            }
+                            break;
+                        case 'D':
+                        case 'd':
+                            using (var writer = File.AppendText(fileName))
+                            {
+                                writer.WriteLine(40);
+                            }
+                            break;
+                        case 'E':
+                        case 'e':
+                            using (var writer = File.AppendText(fileName))
+                            {
+                                writer.WriteLine(20);
+                            }
+                            break;
+                        default:
+                            throw new Exception("Wrong Letter");
+                    }
+                }
+                else
+                {
+                    throw new Exception("String is not float");
+                }
             }
+
         }
-        //public override void AddGrade(string grade)
-        //{
-        //    if (float.TryParse(grade, out float result))
-        //    {
-        //        using (var writer = File.AppendText(fileName))
-        //        {
-        //            writer.WriteLine(grade);
-        //        }
-        //    }
-        //    //else
-        //    else if (char.TryParse(grade, out char charResult))
-        //    {
-        //        //using (var writer = File.AppendText(fileName))
-        //        //{
-        //        //    writer.WriteLine(grade);
-        //        //}
-        //        if (grade == "A" || grade == "a")
-        //        {
-        //            using (var writer = File.AppendText(fileName))
-        //            {
-        //                writer.WriteLine(100);
-        //            }
-        //        }                               
-        //        else if (grade == "B" || grade == "b")
-        //        {
-        //            using (var writer = File.AppendText(fileName))
-        //            {
-        //                writer.WriteLine(80);
-        //            }
-        //        }             
-        //        else if (grade == "C" || grade == "c")
-        //        {
-        //            using (var writer = File.AppendText(fileName))
-        //            {
-        //                writer.WriteLine(60);
-        //            }
-        //        }
-        //        else if (grade == "D" || grade == "d")
-        //        {
-        //            using (var writer = File.AppendText(fileName))
-        //            {
-        //                writer.WriteLine(40);
-        //            }
-        //        }
-        //        else if (grade == "E" || grade == "e")
-        //        {
-        //            using (var writer = File.AppendText(fileName))
-        //            {
-        //                writer.WriteLine(20);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            throw new Exception("Wrong Letter");
-        //        }
-        //    }           
-        //}
 
         public override void AddGrade(byte grade)
         {
@@ -182,14 +167,13 @@ namespace evalApp
             {
                 case 'A':
                 case 'a':
-                    //this.grades.Add(100);
                     using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(100);
                     }
                     break;
                 case 'B':
-                case 'b':           
+                case 'b':
                     using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(80);
@@ -211,7 +195,7 @@ namespace evalApp
                     break;
                 case 'E':
                 case 'e':
-                   using (var writer = File.AppendText(fileName))
+                    using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(20);
                     }
@@ -219,93 +203,6 @@ namespace evalApp
                 default:
                     throw new Exception("Wrong Letter");
             }
-
-
-
-            //if (char.TryParse(grade, out char charResult))
-            //{
-                //if (grade == "A" || grade == "a")
-                //{
-                //    using (var writer = File.AppendText(fileName))
-                //    {
-                //        writer.WriteLine(100);
-                //    }
-                //}
-                //else if (grade == "B" || grade == "b")
-                //{
-                //    using (var writer = File.AppendText(fileName))
-                //    {
-                //        writer.WriteLine(80);
-                //    }
-                //}
-                //else if (grade == "C" || grade == "c")
-                //{
-                //    using (var writer = File.AppendText(fileName))
-                //    {
-                //        writer.WriteLine(60);
-                //    }
-                //}
-                //else if (grade == "D" || grade == "d")
-                //{
-                //    using (var writer = File.AppendText(fileName))
-                //    {
-                //        writer.WriteLine(40);
-                //    }
-                //}
-                //else if (grade == "E" || grade == "e")
-                //{
-                //    using (var writer = File.AppendText(fileName))
-                //    {
-                //        writer.WriteLine(20);
-                //    }
-                //}
-
-                //switch (grade)
-                //{
-                //    case 'A':
-                //    case 'a':
-                //        using (var writer = File.AppendText(fileName))
-                //        {
-                //            writer.WriteLine(100);
-                //        }
-                //        break;
-                //    case 'B':
-                //    case 'b':
-                //        using (var writer = File.AppendText(fileName))
-                //        {
-                //            writer.WriteLine(80);
-                //        }
-                //        break;
-                //    case 'C':
-                //    case 'c':
-                //        using (var writer = File.AppendText(fileName))
-                //        {
-                //            writer.WriteLine(60);
-                //        }
-                //        break;
-                //    case 'D':
-                //    case 'd':
-                //        using (var writer = File.AppendText(fileName))
-                //        {
-                //            writer.WriteLine(40);
-                //        }
-                //        break;
-                //    case 'E':
-                //    case 'e':
-                //        using (var writer = File.AppendText(fileName))
-                //        {
-                //            writer.WriteLine(20);
-                //        }
-                //        break;
-                //    default:
-                //        throw new Exception("Wrong Letter");
-                //}
-          //  }
-
-            //else
-            //{
-            //    throw new Exception("Wrong Letter");
-            //}
         }
 
         public override Statistics GetStatistics()
