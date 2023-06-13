@@ -35,8 +35,6 @@ namespace evalApp
 
         public abstract void AddGrade(string grade);
 
-        //public abstract void FileName(string fileName);
-
         public abstract Statistics GetStatistics();
     }
 }

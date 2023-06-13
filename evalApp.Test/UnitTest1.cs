@@ -152,7 +152,6 @@ namespace evalApp.Test
             //student.AddGrade(9);
             //student.AddGrade('a');
 
-
             //act
             var statistics = student.GetStatistics();
 
