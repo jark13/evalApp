@@ -1,10 +1,7 @@
-﻿using System.IO.Enumeration;
-
-namespace evalApp
+﻿namespace evalApp
 {
     public abstract class StudentBase : IStudent
     {
-
         public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
         public StudentBase(string name, string surname, string sex)
@@ -14,12 +11,11 @@ namespace evalApp
             this.Sex = sex;
         }
 
+        public string Name { get; set; }
 
-        public string Name { get; private set; }
+        public string Surname { get; set; }
 
-        public string Surname { get; private set; }
-
-        public string Sex { get; private set; }
+        public string Sex { get; set; }
 
         public abstract void AddGrade(float grade);
 

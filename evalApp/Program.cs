@@ -1,5 +1,4 @@
 ﻿using evalApp;
-using System.Xml.Linq;
 using System;
 
 Console.WriteLine("Welcome to evalApp application for a student evaluation.");
@@ -14,8 +13,23 @@ string name = Console.ReadLine();
 Console.Write("Please enter the Surname: ");
 string surname = Console.ReadLine();
 
-Console.Write("Please enter the Sex: ");
-string sex = Console.ReadLine();
+Console.Write("Please enter the Sex (Fimale/fimale or Male/male): ");
+string sex = Console.ReadLine().ToLower(); ;
+while (true)
+{
+    if (sex == "male" || sex == "female")
+    {
+        break;
+    }
+    else
+    {
+        Console.WriteLine("Invalid sex. Please try again.");
+    }
+    Console.Write("Please enter your sex (male/female): ");
+    sex = Console.ReadLine().ToLower();
+}
+
+
 Console.WriteLine();
 
 var student = new StudentInFile(name, surname, sex);

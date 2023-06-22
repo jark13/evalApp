@@ -1,8 +1,4 @@
-﻿using System.Collections.Specialized;
-using System.Diagnostics;
-using static evalApp.StudentBase;
-
-namespace evalApp
+﻿namespace evalApp
 {
     public class StudentInFile : StudentBase
     {
@@ -16,14 +12,6 @@ namespace evalApp
             this.Surname = surname;
             this.Sex = sex;
         }
-
-        public string Name { get; private set; }
-
-        public string Surname { get; private set; }
-
-        public string Sex { get; private set; }
-
-
 
         public override void AddGrade(float grade)
         {
@@ -49,75 +37,24 @@ namespace evalApp
         {
             if (float.TryParse(grade, out float result))
             {
-                if (result >= 0 && result <= 100)
+                using (var writer = File.AppendText(fileName))
                 {
-                    using (var writer = File.AppendText(fileName))
-                    {
-                        writer.WriteLine(result);
-
-                        if (GradeAdded != null)
-                        {
-                            GradeAdded(this, new EventArgs());
-                        }
-                    }
+                    writer.WriteLine(result);
+                    AddGrade(result);
                 }
-                else
+            }
+            else if (char.TryParse(grade, out char charResult))
+            {
+                using (var writer = File.AppendText(fileName))
                 {
-                    throw new Exception("Value out of range");
+                    writer.WriteLine(charResult);
+                    AddGrade(charResult);
                 }
             }
             else
             {
-                if (char.TryParse(grade, out char charResult))
-                {
-                    switch (charResult)
-                    {
-                        case 'A':
-                        case 'a':
-                            //this.grades.Add(100);
-                            using (var writer = File.AppendText(fileName))
-                            {
-                                writer.WriteLine(100);
-                            }
-                            break;
-                        case 'B':
-                        case 'b':
-                            using (var writer = File.AppendText(fileName))
-                            {
-                                writer.WriteLine(80);
-                            }
-                            break;
-                        case 'C':
-                        case 'c':
-                            using (var writer = File.AppendText(fileName))
-                            {
-                                writer.WriteLine(60);
-                            }
-                            break;
-                        case 'D':
-                        case 'd':
-                            using (var writer = File.AppendText(fileName))
-                            {
-                                writer.WriteLine(40);
-                            }
-                            break;
-                        case 'E':
-                        case 'e':
-                            using (var writer = File.AppendText(fileName))
-                            {
-                                writer.WriteLine(20);
-                            }
-                            break;
-                        default:
-                            throw new Exception("Wrong Letter");
-                    }
-                }
-                else
-                {
-                    throw new Exception("String is not float");
-                }
+                throw new Exception("String is not float");
             }
-
         }
 
         public override void AddGrade(byte grade)

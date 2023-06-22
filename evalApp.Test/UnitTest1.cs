@@ -1,5 +1,3 @@
-using System.Runtime.Intrinsics.X86;
-
 namespace evalApp.Test
 {
      public class TypeTests
@@ -33,11 +31,9 @@ namespace evalApp.Test
             var user1 = new StudentInMemory("Marek", "Nowak", "33");
             var user2 = new StudentInMemory("Marek", "Nowak", "33");
 
-
             //Assert.AreEqual(user1.Age, user2.Age);
             Assert.AreNotEqual(user1, user2);
         }
-
 
         [Test]
         public void WhenUserColletsPoints_ShouldReturnCorrectMin()
@@ -134,7 +130,6 @@ namespace evalApp.Test
             //assert
             Assert.AreEqual(20, statistics.Min);
         }
-
 
         [Test]
         public void WhenUserExpressedByLetterColletsPoints_ShouldReturnCorrectAverage()

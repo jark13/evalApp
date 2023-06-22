@@ -1,6 +1,4 @@
-﻿using static evalApp.StudentBase;
-
-namespace evalApp
+﻿namespace evalApp
 {
     public class StudentInMemory : StudentBase
     {
@@ -15,13 +13,6 @@ namespace evalApp
             this.Surname = surname;
             this.Sex = sex;
         }
-
-
-        public string Name { get; private set; }
-
-        public string Surname { get; private set; }
-
-        public string Sex { get; private set; }
 
         public override void AddGrade(float grade)
         {
@@ -46,7 +37,6 @@ namespace evalApp
             {
                 AddGrade(result);
             }
-
             else if (char.TryParse(grade, out char charResult))
             {
                 this.AddGrade(charResult);

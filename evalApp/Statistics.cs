@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace evalApp
+﻿namespace evalApp
 {
     public class Statistics
     {
@@ -42,7 +36,6 @@ namespace evalApp
                         return 'E';
                 }
             }
-
         }
 
         public Statistics()
